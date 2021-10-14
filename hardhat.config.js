@@ -8,7 +8,7 @@ dotenv.config();
 const { verify } = require("./deploy/verify");
 task("verify-contracts", "Verifies the core contracts").setAction(verify);
 
-const { RPC_ENDPOINT, DEPLOYER_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
+const { RPC_ENDPOINT, RINKEBY_RPC_ENDPOINT, DEPLOYER_PRIVATE_KEY, ETHERSCAN_API_KEY } = process.env;
 
 
 module.exports = {
@@ -20,6 +20,10 @@ module.exports = {
     hardhat: {},
     mainnet: {
       url: RPC_ENDPOINT,
+      accounts: [`0x${DEPLOYER_PRIVATE_KEY}`]
+    },
+    rinkeby: {
+      url: RINKEBY_RPC_ENDPOINT,
       accounts: [`0x${DEPLOYER_PRIVATE_KEY}`]
     }
   },
